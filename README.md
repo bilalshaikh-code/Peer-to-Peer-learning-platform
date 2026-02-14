@@ -23,7 +23,7 @@ The platform is open to students, professionals, and lifelong learners.
 
 ## Workflow
 
-![Workflow](sources/Workflow.png)
+![Workflow](Sources/Workflow.png)
 
 <!-- ## Future Enhancements
 
