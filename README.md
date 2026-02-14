@@ -23,16 +23,16 @@ The platform is open to students, professionals, and lifelong learners.
 
 ## Workflow
 
-![Workflow](image.png)
+![Workflow](sources/Workflow.png)
 
-## Future Enhancements
+<!-- ## Future Enhancements
 
 - Group sessions
 - Mobile application
 - Skill certification badges
 - Blockchain-based credit tracking
 - Premium mentorship tiers
-- Corporate learning programs
+- Corporate learning programs -->
 
 ## Impact
 
