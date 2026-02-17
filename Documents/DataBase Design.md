@@ -55,6 +55,7 @@
 - ID -> Primary_key, auto_update
 - user_id -> FK(user), not_null
 - session_id -> FK(session), not_null
+- status -> ENUM(booking/cancel)
 - last_update_date
 - created_date
 
@@ -85,7 +86,7 @@
 - user_id -> FK(user), not_null
 - skill_id -> FK(skill), not_null
 - quiz_score -> number
-- session_quality_score1 -> number
+- session_quality_score -> number
 - feedback_weight -> number
 - final_ai_score -> number
 - last_update_date
