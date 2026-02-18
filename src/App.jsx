@@ -1,10 +1,14 @@
-import './App.css';
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import Courses from "./components/Courses";
+import "./App.css";
 
 const App = () => {
   return (
-    <div className="content">
-      <h1>Rsbuild with React</h1>
-      <p>Start building amazing things with Rsbuild.</p>
+    <div className="App">
+      <Navbar />
+      <Hero />
+      <Courses />
     </div>
   );
 };
