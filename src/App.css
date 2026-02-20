@@ -425,10 +425,15 @@ button,
   .hero {
     flex-direction: column;
     text-align: center;
+    margin-bottom: 5px !important;
   }
 
   .hero-content {
     text-align: center;
+  }
+
+  .hero-image{
+    display: none;
   }
 
   .courses-header {
