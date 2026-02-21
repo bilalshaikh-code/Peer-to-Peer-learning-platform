@@ -1,4 +1,4 @@
-import React from "react";
+// course card
 
 const CourseCard = ({
   title,

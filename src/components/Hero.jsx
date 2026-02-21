@@ -1,13 +1,14 @@
-import heroImage from "../../public/hero_image.jpg"
+// Hero
 
 const Hero = () => {
   return (
     <section className="hero">
       <div className="hero-content">
         <h1>
-          Learn Anywhere, <br className="sm:hidden" /> Build Your Future
+          Learn. Teach. Grow Together.
         </h1>
-        <p>Upgrade your skills with world-class online courses from industry experts.</p>
+        <p> A peer-to-peer learning platform where you can both learn new skills
+        and teach what you know.</p>
         <button type="button" className="primary-btn">
           Start Learning — It's Free to Begin
         </button>
@@ -15,7 +16,7 @@ const Hero = () => {
 
       <div className="hero-image">
         <img
-          src={heroImage}
+          src="/hero_image.jpg"
           alt="Happy student learning programming on laptop with coffee"
           loading="lazy"                    // ← helps with LCP / performance
           width={460}                       // ← your CSS max-width value

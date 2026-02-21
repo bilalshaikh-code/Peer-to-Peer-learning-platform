@@ -1,3 +1,5 @@
+// courses
+
 import CourseCard from "./CourseCard";
 
 const Courses = () => {
@@ -47,6 +49,7 @@ const Courses = () => {
           />
           {/* Optional: search icon (you can use heroicons, lucide-react, etc.) */}
           {/* <SearchIcon className="search-icon" /> */}
+          <i className="bi bi-search search-icon"></i>
         </div>
       </div>
 
