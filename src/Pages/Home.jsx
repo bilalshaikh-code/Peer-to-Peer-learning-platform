@@ -1,19 +1,21 @@
-import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
-import Features from "../components/Features";
-import Courses from "../components/Courses";
-import HowItWorks from "../components/HowItWorks";
-import Footer from "../components/Footer";
-import "../App.css";
+import Navbar from "../components/Home/Navbar";
+import Hero from "../components/Home/Hero";
+import Features from "../components/Home/Features";
+import Courses from "../components/Home/Courses";
+import HowItWorks from "../components/Home/HowItWorks";
+import Footer from "../components/Home/Footer";
+import "../../public/CSS/App.css";
 
 const Home = () => {
   return (
-    <div className="Main">
+    <div className="App">
       <Navbar />
-      <Hero />
-      <Features />
-      <Courses />
-      <HowItWorks />
+      <main>
+        <Hero />
+        <Features />
+        <Courses />
+        <HowItWorks />
+      </main>
       <Footer />
     </div>
   );

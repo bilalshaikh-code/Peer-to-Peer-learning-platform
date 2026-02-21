@@ -91,6 +91,16 @@ button { font-family: inherit; }
   color: var(--primary);
 }
 
+.active {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+@keyframes scaleIn {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
 .auth-buttons {
   display: flex;
   gap: 1rem;
@@ -105,14 +115,36 @@ button { font-family: inherit; }
 }
 
 /* =============== HERO SECTION =============== */
+/* Update Hero to match the Courses section vibe */
 .hero {
-  max-width: 1300px;
-  margin: 6rem auto;
-  padding: 0 2rem;
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  width: 100%; /* Spans full width for the background */
+  max-width: 1400px;
+  margin: 2rem auto;
+  padding: 6rem 5%;
+  display: flex;
+  gap: 3rem;
   align-items: center;
-  gap: 4rem;
+  justify-content: center;
+  
+  /* Matches your Courses gradient */
+  background: linear-gradient(135deg, var(--bg-dark), #1e293b);
+  border-radius: var(--radius-xl);
+  color: white; 
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ensure the paragraph text doesn't disappear */
+.hero p {
+  color: rgba(255, 255, 255, 0.7); /* Soft white */
+  margin-bottom: 2rem;
+  max-width: 65ch;
+  font-size: 1.2rem;
+}
+
+.hero-content, .hero-image {
+  position: relative;
+  z-index: 1; /* Stay above the glow */
 }
 
 .hero h1 {
@@ -121,12 +153,6 @@ button { font-family: inherit; }
   font-weight: 800;
   margin-bottom: 1.5rem;
   letter-spacing: -1px;
-}
-
-.hero p {
-  font-size: 1.2rem;
-  color: var(--text-muted);
-  margin-bottom: 2.5rem;
 }
 
 .primary-btn {
@@ -152,6 +178,8 @@ button { font-family: inherit; }
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-premium);
   animation: float 6s ease-in-out infinite;
+  object-fit: cover;
+  object-position: left;
 }
 
 @keyframes float {
@@ -279,17 +307,66 @@ button { font-family: inherit; }
 /* =============== FOOTER =============== */
 footer {
   padding: 4rem 2rem;
-  background: #020617;
+  background: linear-gradient(135deg, var(--bg-dark), #1e293b);
   color: var(--text-muted);
   text-align: center;
   border-top: 1px solid rgba(255,255,255,0.05);
 }
 
+/* 1. Define the Reveal Animation */
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* 2. Apply to Main Sections */
+section {
+  /* This ensures the animation only plays once as it enters the viewport */
+  view-timeline-name: --section-reveal;
+  view-timeline-axis: block;
+
+  animation-name: reveal-in;
+  animation-fill-mode: both;
+  
+  /* The animation starts when 10% of the section is visible 
+     and finishes when it's 30% into the view */
+  animation-timeline: --section-reveal;
+  animation-range: entry 10% cover 30%;
+}
+
+/* 3. Staggered reveal for Cards */
+.course-card, .feature-card {
+  view-timeline-name: --card-reveal;
+  view-timeline-axis: block;
+  animation-name: reveal-in;
+  animation-fill-mode: both;
+  animation-timeline: --card-reveal;
+  animation-range: entry 5% cover 25%;
+}
+
+.courses-grid > *:nth-child(1) { animation-delay: 0.1s; }
+.courses-grid > *:nth-child(2) { animation-delay: 0.2s; }
+.courses-grid > *:nth-child(3) { animation-delay: 0.3s; }
+
+#courses, 
+#how-it-works, 
+.features {
+  scroll-margin-top: 100px; /* Adjust this value to match your navbar height */
+}
+
 /* =============== MOBILE RESPONSIVE =============== */
 @media (max-width: 992px) {
   .hero { grid-template-columns: 1fr; text-align: center; margin: 3rem auto; }
-  .hero-image { order: -1; }
-  .hero-image img { max-width: 500px; }
+  .hero-image { display: none; }
+
 }
 
 @media (max-width: 768px) {

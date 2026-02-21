@@ -37,7 +37,7 @@ const Courses = () => {
 ];
 
   return (
-    <section className="courses-section" aria-labelledby="courses-heading">
+    <section id="courses" className="courses-section" aria-labelledby="courses-heading">
       <div className="courses-header">
         <h2 id="courses-heading">All Courses</h2>
 

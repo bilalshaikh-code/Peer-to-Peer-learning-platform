@@ -7,7 +7,7 @@ const Features = () => {
       desc: "Be both a learner and a tutor with a single account.",
     },
     {
-      title: "Secure Payments",
+      title: "Secure Payments", 
       desc: "Safe and seamless transactions between users.",
     },
     {
@@ -17,7 +17,7 @@ const Features = () => {
   ];
 
   return (
-    <section className="features">
+    <section className="features" id="features">
       <h3 className="text-3xl font-bold text-center mb-12">
         Why Choose Us?
       </h3>

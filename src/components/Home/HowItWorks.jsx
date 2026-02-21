@@ -1,7 +1,7 @@
 // How it works
 const HowItWorks = () => {
   return (
-    <section className="how-it-works">
+    <section className="how-it-works" id="how-it-works">
       <h3 className="text-3xl font-bold text-center mb-12">
         How It Works
       </h3>

@@ -1,25 +1,20 @@
-import React, { useState } from 'react';
-import '../../public/CSS/auth.css';
+import '../../../public/CSS/auth.css';
 
-
-const AuthPage = () => {
-  const [isLogin, setIsLogin] = useState(true);
+const SignUp = ({onSwitch}) => {
 
   return (
     <div className="auth-container">
       <div className="auth-card">
         <div className="auth-header">
-          <h2>{isLogin ? 'Welcome Back' : 'Join the Community'}</h2>
-          <p>{isLogin ? 'Enter your details to continue learning.' : 'Start your journey with us today.'}</p>
+          <h2>Join the Community</h2>
+          <p>Start your journey with us today.</p>
         </div>
 
         <form className="auth-form" onSubmit={(e) => e.preventDefault()}>
-          {!isLogin && (
             <div className="input-group">
               <label>Full Name</label>
               <input type="text" placeholder="John Doe" required />
             </div>
-          )}
           
           <div className="input-group">
             <label>Email Address</label>
@@ -31,17 +26,8 @@ const AuthPage = () => {
             <input type="password" placeholder="••••••••" required />
           </div>
 
-          {isLogin && (
-            <div className="form-options">
-              <label className="remember-me">
-                <input type="checkbox" /> Remember me
-              </label>
-              <a href="#forgot" className="forgot-link">Forgot Password?</a>
-            </div>
-          )}
-
           <button type="submit" className="auth-submit-btn">
-            {isLogin ? 'Sign In' : 'Create Account'}
+            Create Account
           </button>
         </form>
 
@@ -55,12 +41,12 @@ const AuthPage = () => {
         </div>
 
         <p className="auth-toggle-text">
-          {isLogin ? "Don't have an account?" : "Already have an account?"}
+          Already have an account?
           <button 
-            className="toggle-btn" 
-            onClick={() => setIsLogin(!isLogin)}
+            className="toggle-btn"
+            onClick={onSwitch}
           >
-            {isLogin ? 'Sign Up' : 'Log In'}
+            Log In
           </button>
         </p>
       </div>
@@ -68,4 +54,4 @@ const AuthPage = () => {
   );
 };
 
-export default AuthPage;
+export default SignUp;

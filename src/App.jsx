@@ -1,34 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Courses from './components/Courses';
-import Features from './components/Features';
-import HowItWorks from './components/HowItWorks';
-import AuthPage from './components/AuthPage';
-import Footer from './components/Footer';
-import './App.css';
+import Home from './Pages/Home';
+import Auth from './Pages/Auth';
+import Dashboard from './Pages/Dashboard';
 
 const App = () => {
   return (
     <Router>
-      <div className="App">
-        <Navbar />
-        <Routes>
-          {/* LANDING PAGE ROUTE */}
-          <Route path="/" element={
-            <main>
-              <Hero />
-              <Features />
-              <Courses />
-              <HowItWorks/>
-            </main>
-          } />
-
-          {/* AUTH PAGE ROUTE */}
-          <Route path="/auth" element={<AuthPage />} />
-        </Routes>
-        <Footer />
-      </div>
+      <Routes>
+        <Route path="/" element={<Home/>} />
+        <Route path="/auth" element={<Auth/>} />
+        <Route path='/dashboard' element={<Dashboard/>} />
+      </Routes>
     </Router>
   );
 };

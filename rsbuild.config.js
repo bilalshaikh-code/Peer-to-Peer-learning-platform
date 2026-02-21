@@ -6,7 +6,7 @@ import { pluginReact } from '@rsbuild/plugin-react';
 export default defineConfig({
   plugins: [pluginReact()],
   html: {
-    title: "Peer-to-Peer Learning",
+    title: "Peer-to-Peer Learning Platform",
     tags: [{
       tag: "link",
       attrs: { 
