@@ -1,12 +1,31 @@
 from rest_framework.serializers import ModelSerializer, ReadOnlyField
+from rest_framework import serializers
+from django.contrib.auth.password_validation import validate_password
 from .models import User, Skill, UserSkills, Session
 
-class UserSerializers(ModelSerializer):
+class SignupSerializer(ModelSerializer):
+    password = serializers.CharField(write_only=True)
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'phone_number', 'total_points', 'is_valid', 'is_active', 'date_joined']
+        fields = ('username', 'first_name', 'last_name', 'email', 'phone_number', 'password')
 
+    def validate_password(self, value):
+        validate_password(value)
+        return value
+
+    def create(self, validated_data):
+        user = User.objects.create_user(
+            username=validated_data['username'],
+            first_name=validated_data['first_name'],
+            last_name=validated_data['last_name'],
+            email=validated_data['email'],
+            phone_number=validated_data['phone_number'],
+            password=validated_data['password'],
+            
+        )
+        return user
+    
 class SkillSerializers(ModelSerializer):
 
     class Meta:
@@ -19,4 +38,11 @@ class UserSkillsSerializers(ModelSerializer):
 
     class Meta:
         model = UserSkills
-        fields = ['user','skill']
+        fields = ['user', 'skill', 'type', 'level', 'updated_at', 'created_at']
+
+class SessionSerializers(ModelSerializer):
+    user = ReadOnlyField(source='user.username')
+
+    class Meta:
+        model = Session
+        fields = ['name', 'user', 'time', 'description', 'updated_at', 'created_at']

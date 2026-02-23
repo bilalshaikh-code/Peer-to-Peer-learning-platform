@@ -17,5 +17,5 @@ Including another URLconf
 from django.urls import path, include
 
 urlpatterns = [
-    path('api',include('peerlearn.urls'))
+    path('api/',include('peerlearn.urls'))
 ]

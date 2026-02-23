@@ -5,7 +5,7 @@ from django.utils.text import slugify
 class User(AbstractUser):
     phone_number = models.CharField(max_length=20)
     is_valid = models.BooleanField(default=False)
-    total_points = models.DecimalField(default=100)
+    total_points = models.DecimalField(default=100,decimal_places=2,max_digits=10)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
