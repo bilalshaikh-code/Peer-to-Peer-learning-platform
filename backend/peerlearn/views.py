@@ -4,12 +4,14 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import SignupSerializer
 from .models import User
+from rest_framework.permissions import AllowAny
 
 # Create your views here.
 
 class SignupView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = SignupSerializer
+    permission_classes = [AllowAny]
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -20,7 +22,6 @@ class SignupView(generics.CreateAPIView):
 
         return Response({
             "user": {
-                "id": user.id,
                 "username": user.username,
                 "email": user.email,
             },

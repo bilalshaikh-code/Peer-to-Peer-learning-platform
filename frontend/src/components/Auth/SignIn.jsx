@@ -1,6 +1,47 @@
 import '../../../public/CSS/auth.css';
+import { useState } from "react";
+import { loginUser } from "../../services/authService";
 
 const SignIn = ({onSwitch, onForgot}) => {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+
+  const [rememberMe, setRememberMe] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const data = await loginUser(formData);
+
+      // Store tokens based on remember me
+      if (rememberMe) {
+        localStorage.setItem("access", data.access);
+        localStorage.setItem("refresh", data.refresh);
+      } else {
+        sessionStorage.setItem("access", data.access);
+        sessionStorage.setItem("refresh", data.refresh);
+      }
+
+      alert("Login successful!");
+
+      // You can redirect here
+      window.location.href = "/dashboard";
+
+    } catch (err) {
+      setError("Invalid username or password");
+    }
+  };
 
   return (
     <div className="auth-container">
@@ -10,23 +51,25 @@ const SignIn = ({onSwitch, onForgot}) => {
           <p>Enter your details to continue learning.</p>
         </div>
 
-        <form className="auth-form" onSubmit={(e) => e.preventDefault()}>
+        <form className="auth-form" onSubmit={handleSubmit}>
           <div className="input-group">
-            <label>Email Address</label>
-            <input type="email" placeholder="name@example.com" required />
+            <label>Username</label>
+            <input type="text" placeholder="johndoe" name='username' onChange={handleChange} required />
           </div>
 
           <div className="input-group">
             <label>Password</label>
-            <input type="password" placeholder="••••••••" required />
+            <input type="password" placeholder="••••••••" name='password' onChange={handleChange} required />
           </div>
 
             <div className="form-options">
               <label className="remember-me">
-                <input type="checkbox" /> Remember me
+                <input type="checkbox" checked={rememberMe} onChange={() => setRememberMe(!rememberMe)} /> Remember me
               </label>
               <button type='button' onClick={onForgot} className="toggle-btn forgot-link">Forgot Password?</button>
             </div>
+
+            {error && <p style={{ color: "red" }}>{error}</p>}
 
           <button type="submit" className="auth-submit-btn">
             Sign In
