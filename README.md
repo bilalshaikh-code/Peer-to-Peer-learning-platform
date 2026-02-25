@@ -25,6 +25,22 @@ The platform is open to students, professionals, and lifelong learners.
 
 ![Workflow](Sources/Workflow.png)
 
+## Setup
+
+Install the dependencies:
+
+```bash
+npm install
+```
+
+## Get started
+
+Start the dev server, and the app will be available at [http://localhost:3000](http://localhost:3000).
+
+```bash
+npm run dev
+```
+
 <!-- ## Future Enhancements
 
 - Group sessions
