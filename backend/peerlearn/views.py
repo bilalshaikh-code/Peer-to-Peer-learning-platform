@@ -1,10 +1,9 @@
-from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
-from .serializers import SignupSerializer
+from .serializers import SignupSerializer, UserDetailSerializer
 from .models import User
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
 # Create your views here.
 
@@ -21,10 +20,13 @@ class SignupView(generics.CreateAPIView):
         refresh = RefreshToken.for_user(user)
 
         return Response({
-            "user": {
-                "username": user.username,
-                "email": user.email,
-            },
             "access": str(refresh.access_token),
             "refresh": str(refresh),
         })
+    
+class UserDetailView(generics.RetrieveAPIView):
+    serializer_class = UserDetailSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user

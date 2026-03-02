@@ -1,10 +1,30 @@
 // pages/Dashboard.jsx
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Sidebar from '../components/dashboard/Sidebar';
 import StatCard from '../components/dashboard/StatCard';
 import '../../public/CSS/Dashboard.css';
 
 const Dashboard = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+
+    axios.get("http://127.0.0.1:8000/api/user/", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then((res) => {
+      setUser(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  }, []);
+
   return (
     <div className="dashboard-layout">
       <Sidebar />

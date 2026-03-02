@@ -26,6 +26,11 @@ class SignupSerializer(ModelSerializer):
         )
         return user
     
+class UserDetailSerializer(ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'phone_number', 'total_points']
+    
 class SkillSerializers(ModelSerializer):
 
     class Meta:
